@@ -1,0 +1,25 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus-data:/prometheus
+      - /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml # Mount configuration
+    ports:
+      - "9090:9090"
+    restart: unless-stopped # Added restart policy
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    restart: unless-stopped # Added restart policy
+
+volumes:
+  prometheus-data: {}
+  grafana-data: {}

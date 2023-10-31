@@ -1,0 +1,77 @@
+version: '3.1'
+
+services:
+  # app: 
+  #   build: .   # Assumes you have a Dockerfile in the same directory as docker-compose.yml
+  #   environment:
+  #     DATABASE_URL: postgres://myuser:example@db:5432/app
+  #   command: npm run start:dev
+  #   volumes:
+  #   - ./src:/usr/src/app/src
+  #   - /usr/src/app/node_modules/  # This is to ensure the node_modules in the container are used and not overwritten by your local node_modules
+  #   ports:
+  #     - "3000:3000"  # Adjust if your app listens on a different port
+  #   depends_on:
+  #     - db  # Ensures that the app starts only after db starts
+
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "8080:80"
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./deployments/docker-compose-local-config/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "6001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+  
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki_data:/loki
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - ./logs:/var/logs # Make sure to point this to your actual logs directory
+      - ./deployments/docker-compose-local-config/promtail-config.yaml:/etc/promtail/config.yml
+      - promtail_position:/tmp
+    command: -config.file=/etc/promtail/config.yml -config.expand-env=true
+
+volumes:
+  postgres_data: {}
+  grafana_data: {}
+  loki_data: {}
+  promtail_position: {}

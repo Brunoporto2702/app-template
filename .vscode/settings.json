@@ -1,0 +1,16 @@
+{
+    "rest-client.environmentVariables": {
+        // "$shared": {
+        //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MzIwYmMwYS04ZTYxLTRkZTUtODcyNy1kMDdlODFmZWRiMTAiLCJlbWFpbCI6ImNvbnRhdG9AYWNxdWF0aXMuY29tIiwicm9sZXMiOlsiYWRtaW4iLCJ1c2VyIl0sImlhdCI6MTY5NTMyNzE3MiwiZXhwIjoxNzI2ODYzMTcyfQ.H3i98yDRPsriPMAxrmRJ26UykFuxb-UtC4mpW08-Lr8"
+        // },
+        "local": {
+            "host": "http://localhost:3000",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MzIwYmMwYS04ZTYxLTRkZTUtODcyNy1kMDdlODFmZWRiMTAiLCJlbWFpbCI6ImNvbnRhdG9AYWNxdWF0aXMuY29tIiwicm9sZXMiOlsiYWRtaW4iLCJ1c2VyIl0sImlhdCI6MTY5NTMyNzE3MiwiZXhwIjoxNzI2ODYzMTcyfQ.H3i98yDRPsriPMAxrmRJ26UykFuxb-UtC4mpW08-Lr8",
+        },
+        // "production": {
+        //     "host": "https://your-app.address.com",
+        //     // "token": "{{$shared prodToken}}",
+        //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkN2FlZWZlZC0zYmVhLTQwNTAtYTRmYi02MDFlN2E3YWY4OWUiLCJlbWFpbCI6ImNvbnRhdG9AYWNxdWF0aXMuY29tIiwicm9sZXMiOlsiYWRtaW4iLCJ1c2VyIl0sImlhdCI6MTY5NTMyNzMwNCwiZXhwIjoxNzI2ODYzMzA0fQ.40fbkBYa8pIBpcfAfshjw7pRdDRxzpxkVpXw9RRRaek",
+        // }
+    }
+}

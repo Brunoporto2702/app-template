@@ -1,0 +1,65 @@
+- hosts: monitoring
+  become: yes
+  tasks:
+    - name: Install Docker
+      include_role:
+        name: geerlingguy.docker
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+    
+    - name: Remove default link
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Configure Nginx Reverse Proxy for Grafana
+      copy:
+        src: ../nginx_grafana.conf
+        dest: /etc/nginx/sites-available/grafana
+      notify:
+        - Restart Nginx
+    
+    - name: Enable Grafana Site
+      file:
+        src: /etc/nginx/sites-available/grafana
+        dest: /etc/nginx/sites-enabled/grafana
+        state: link
+      notify:
+        - Restart Nginx
+
+    - name: Create monitoring directory
+      file:
+        path: /etc/prometheus
+        state: directory
+    
+    - name: Copy Prometheus configuration
+      copy:
+        src: ../prometheus.yml
+        dest: /etc/prometheus/prometheus.yml
+
+    - name: Create monitoring directory
+      file:
+        path: /opt/monitoring
+        state: directory
+    
+    - name: Deploy Prometheus and Grafana using Docker Compose
+      copy:
+        src: ../docker-compose.yml
+        dest: /opt/monitoring/docker-compose.yml
+      notify:
+        - Start containers
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Start containers
+      command:
+        cmd: docker-compose -f /opt/monitoring/docker-compose.yml up -d
+      args:
+        chdir: /opt/monitoring

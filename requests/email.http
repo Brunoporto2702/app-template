@@ -1,0 +1,10 @@
+POST {{host}}/email
+Content-Type: application/json
+
+{
+	"name": "nome",
+	"email": "your-email@gmail.com",
+	"role": "role",
+	"company": "company",
+	"message": "message"
+}
