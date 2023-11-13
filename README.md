@@ -2,16 +2,16 @@
 
 This app is a template for for people that want to experiment with their own projects and learn throughout that process.
 
-## Audience: For whom is this repository made to?
+## Audience: Who is this repository intended for?
 
 Anyone that intends to learn by getting their hands dirty would havea great time playing around with the resources here provided. There is two groups of people that would benefit the most though:
 
-1. Early stage developers that want to better understand the best practices of software development, mantinability, and collaboration used by the greatest companies out there.
+1. Early-stage developers who want to better understand the best practices of software development, maintainability, and collaboration used by the greatest companies out there.
 2. People who work/worked on great projects for the majority of their lifes, and want to get a more pratical understanding of how things ended up the way they are. It is not unusual that employees of enormous projects gets a little intimidated by the amount of tools and resources used by those companies. Hopefully, playing around with this project may help you grasp some valuable insights of why and/or how stuff gets done.
 
 ## Who is the owner of this project?
 
-This repository is made **by** the community **for** the community. It does not intend to serve as a source of truth, official guideline or any anything related that. It is instead a place for shared experimentation and collaboration that everyone who interacts with it wither beneffits itself or improve existing content. Ideally both!
+This repository is created and maintained **by** the community, **for** the community. It does not intend to serve as a source of truth, official guideline or any anything related to that. It is instead a place for shared experimentation and collaboration that everyone who interacts with it either benefits itself or improves existing content. Ideally both!
 
 ## How can I use this template?
 
@@ -27,7 +27,7 @@ Uff... Hope you enjoy your journey!
 
 ## Features and characteristics
 
-- **Simple but still complete:** the application is simple enough a single person can iterate and mantain it, but still contains all the indispensable features any large scale project needs. Making it the perfect choice for both early stage developers that want to learn and experienced developers that want to experiment with new ideas.
+- **Simple yet complete:** the application is simple enough a single person can iterate and mantain it, but still contains all the indispensable features any large scale project needs. Making it the perfect choice for both early stage developers that want to learn and experienced developers that want to experiment with new ideas.
 
 - **Isolated domain/core:** the core of the application is isolated from the implementation details as much as possible. This means that the core of the application is not aware of the existence of the database, http server, etc. This is achieved by using the [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) and [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) in order to make the core of the application agnostic of the implementation details. This is a very important characteristic of the application because it makes the core of the application very easy to test and mantain. It also makes it possible to change the implementation details without having to change the core of the application. This is very important because it makes the application more flexible and scalable.
 
@@ -59,7 +59,7 @@ The architecture of this application wsa strongly inspired in [Hexagonal archite
 
 It was developed using [Nest Framework](https://github.com/nestjs/nest) which also influenced deeply on the decisions made during development.
 
-# Technical use instructions
+# Technical Use Instructions
 
 ## Installing the dependencies
 
@@ -89,7 +89,7 @@ If you wish to run all the peripheral services run:
 $ docker compose up -d
 ```
 
-### Be aware that running all the services will consume a lot of resources from your machine. It is advised not to do so unless you intend to use use/test all the services. Otherwise, if you only want to develop the api, you can run only the database service.
+### Be aware that running all services may consume significant resources on your machine. It is advised not to do so unless you intend to use use/test all the services. Otherwise, if you only want to develop the api, you can run only the database service.
 
 The services included in the docker-compose file are:
 - db: postgres database
