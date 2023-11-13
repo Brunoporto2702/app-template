@@ -27,9 +27,31 @@ Uff... Hope you enjoy your journey!
 
 ## Features and characteristics
 
+- **Simple but still complete:** the application is simple enough a single person can iterate and mantain it, but still contains all the indispensable features any large scale project needs. Making it the perfect choice for both early stage developers that want to learn and experienced developers that want to experiment with new ideas.
+
+- **Isolated domain/core:** the core of the application is isolated from the implementation details as much as possible. This means that the core of the application is not aware of the existence of the database, http server, etc. This is achieved by using the [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) and [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) in order to make the core of the application agnostic of the implementation details. This is a very important characteristic of the application because it makes the core of the application very easy to test and mantain. It also makes it possible to change the implementation details without having to change the core of the application. This is very important because it makes the application more flexible and scalable.
+
+- **Testability ease:** given previous characteristic, the application is very easy to test. The core of the application is completely agnostic of the implementation details, which means that it is very easy to mock the implementation details and test the core of the application in isolation. This is very important because it makes the application more reliable and robust.
+
+- **Observability:** as any system grow, it becomes harder and harder to understand what is going on inside it. This is why it is so important to have a good observability system in place. This application comes with a very complete observability system that allows you to monitor the health of the application, the performance of the application, business metrics and the logs of the application. It is implemented using [prometheus](https://prometheus.io/), [grafana](https://grafana.com/), [loki](https://grafana.com/oss/loki/) and [promtail](https://grafana.com/docs/loki/latest/clients/promtail/). It is very easy to add new metrics and logs to the system.
+
+- **Development workflow:** in order to contribute to this repository, the person who do so will be imersed on a development workflow that is very similar to the one used by the greatest companies out there. This is very important because it makes the person who contribute to this repository more prepared to future work opportunities.
+
+- **Async processing with persistence:** It is known that distributed systems can provide a bunch of benefits, but all those benefits come with a series of added challenges and complexities, that only a companie with a certain scale can afford. This application comes with the simplest possible solution that adds the minimum amount of extra resources to mantaing whilst still providing the most important benefit of all: **resilient flow decoupling**. This means that you can trigger a subsequent flow with no dependency to the original flow, and still be able to track and reprocess the flow if something goes wrong. A simple example of why this is so relevant even to the smallest projects is the following: imagine that you have a flow that sends an email to the user after he/she signs up. If the email service is down, you can still track the flow and reprocess it once the service is back online. This is a very simple example, but it is easy to see how this can be applied to more complex flows. This application achieves this behabiour by simply compbining SQL persistence (unsing the main database of the application) and the original nest's CQRS library. This is not a production ideal setup, but still provides any early stage project with such important characteristic that otherwise would be very hard to achieve. 
+
 ## What is still to be done?
 
+- **Example features (tested)**
 
+- **Example async feature (tested)**
+
+- **Reprocessing capability on the BusModule (tested)**
+
+- **Dashboard template (db, stability, message queue)**
+
+- **Automated deploy (single machine)** 
+
+- **Automated deploy (kubernetes)**
 
 ## Architecture Concerns
 
