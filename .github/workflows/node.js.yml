@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: ['master']
+    branches: ['main']
   pull_request:
-    branches: ['master']
+    branches: ['main']
 
 jobs:
   setup:
@@ -103,18 +103,18 @@ jobs:
       - name: Run Lint
         run: npm run lint
 
-  deploy:
-    name: Deploy to Heroku
-    needs: test
-    if: ${{ github.ref == 'refs/heads/master' &&  github.event_name == 'push' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  # deploy:
+  #   name: Deploy to Heroku
+  #   needs: test
+  #   if: ${{ github.ref == 'refs/heads/master' &&  github.event_name == 'push' }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Deploy
-        uses: akhileshns/heroku-deploy@v3.12.14
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'app'
-          heroku_email: 'your-email'
+  #     - name: Deploy
+  #       uses: akhileshns/heroku-deploy@v3.12.14
+  #       with:
+  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #         heroku_app_name: 'app'
+  #         heroku_email: 'your-email'
